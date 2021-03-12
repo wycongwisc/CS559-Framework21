@@ -11,7 +11,7 @@ There was a prior 2015 version (in "non-modern" JavaScript) that was used from 2
 There were even older versions in C++, beginning from 2000, with the last C++ version in 2014.
 
 The closest thing to a tutorial for the Framework code is the first workbook/assignment that uses it.
-In the Spring 2020 class, this is Workbook 8, page 7.
+In the Spring 2021 class, this is Workbook 8, page 7.
 
 If you want to read about the history of Graphics Town (prior to 2014) and see what the old C++ version was like, read [this](http://graphics.cs.wisc.edu/WP/cs559-fall2014/2014/11/07/project-2-graphics-town-framework-code/). If you want to see the original JavaScript framework, you can look [here](http://graphics.cs.wisc.edu/WP/cs559-fall2015/2015/10/15/project-program-group-2-graphics-town/) for a description. Yes, that really was all the documentation we gave to students.
 
