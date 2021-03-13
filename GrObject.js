@@ -22,7 +22,7 @@ import * as T from "../CS559-Three/build/three.module.js";
 /**
  * This function converts from the specifications given to the `GrObject`
  * constructor into the form used internally. It is the best documentation for
- * how those descriptions are interpretted.
+ * how those descriptions are interpreted.
  * 
  * when creating an object, a parameter is defined by an array of up to 
  * 5 things
@@ -82,7 +82,7 @@ export function paramObjFromParam(param) {
  * any new object should provide methods for:
  * - construction - the constructor needs to call the base class constructor
  *      and provide the parameters and geometry
- * - update - which takes an array of paramaters and sets things accordingly
+ * - update - which takes an array of parameters and sets things accordingly
  * - tick - which moves the animation ahead a small amount
  *
  *
