@@ -627,16 +627,16 @@ export class GrWorld {
     /**
      * advance all of the objects
      */
-    tick(delta, timeOfDay) {
-        this.objects.forEach(obj => obj.tick(delta, timeOfDay));
+    stepWorld(delta, timeOfDay) {
+        this.objects.forEach(obj => obj.stepWorld(delta, timeOfDay));
     }
 
     /** callback list - used in 2 places, so document once 
      * @typedef {Object} WorldCallbacks
       * @property {function} [prefirst] - called before the first loop go around
-      * @property {function} [pretick] - called before the tick (even if there is no tick)
-      * @property {function} [tick] - called after the tick (only if there is a tick)
-      * @property {function} [predraw] - called before drawing (after the tick - if there is one)
+      * @property {function} [prestep] - called before the step (even if there is no step)
+      * @property {function} [stepWorld] - called after the step (only if there is a step)
+      * @property {function} [predraw] - called before drawing (after the step - if there is one)
       * @property {function} [postdraw] - called after drawing
       * @property {function} [first] - called after the end of the first loop go-around
      * 
@@ -652,13 +652,13 @@ export class GrWorld {
       */
     animate(callbacks = {}) {
         if (!this.animCount && callbacks.prefirst) { callbacks.prefirst(this); }
-        if (callbacks.pretick) callbacks.pretick(this);
+        if (callbacks.prestep) callbacks.prestep(this);
 
         if (!this.runbutton || this.runbutton.checked) {
             let delta = performance.now() - this.lastRenderTime;
             let speed = this.speedcontrol ? Number(this.speedcontrol.value) : 1.0;
-            this.tick(delta * speed, this.lastTimeOfDay);
-            if (callbacks.tick) callbacks.tick(this);
+            this.stepWorld(delta * speed, this.lastTimeOfDay);
+            if (callbacks.stepWorld) callbacks.stepWorld(this);
         }
         // since we're already running an animation loop, update view controls here.
         // Pass in a delta since that's what fly controls want. Orbit controls can just ignore.

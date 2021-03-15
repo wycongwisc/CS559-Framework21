@@ -83,7 +83,7 @@ export function paramObjFromParam(param) {
  * - construction - the constructor needs to call the base class constructor
  *      and provide the parameters and geometry
  * - update - which takes an array of parameters and sets things accordingly
- * - tick - which moves the animation ahead a small amount
+ * - stepWorld - which moves the animation ahead a small amount
  *
  *
  * and optionally
@@ -167,7 +167,7 @@ export class GrObject {
    * @param {number} delta
    * @param {number} timeOfDay
    */
-  tick(delta, timeOfDay) {
+  stepWorld(delta, timeOfDay) {
     // by default (base class), does nothing
   }
 
