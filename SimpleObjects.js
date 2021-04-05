@@ -98,6 +98,18 @@ export class GrSphere extends GrObject {
     mesh.position.x = params.x ? Number(params.x) : 0;
     mesh.position.y = params.y ? Number(params.y) : 0;
     mesh.position.z = params.z ? Number(params.z) : 0;
+    
+    this.mesh = mesh;
+  }
+  
+  /**
+   * Update the geometry of the sphere to change its level of complexity
+   * 
+   * @param {number} [widthSegments] - number of horizontal segments
+   * @param {number} [heightSegments] - number of vertical segments
+   */
+  setSegmentation(widthSegments, heightSegments) {
+    this.mesh.geometry = new T.SphereBufferGeometry(this.mesh.geometry.parameters.radius, widthSegments, heightSegments);
   }
 }
 
