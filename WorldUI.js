@@ -157,7 +157,8 @@ export class WorldUI {
             world.objects.map(ob => ob.name).sort(),
             this.div
         );
-        function onSelectLook() {
+        // this has to work for either lookat or highlight
+        function onSelectLook(event) {
             // if we were driving, stop!
             if (
                 world.view_mode == "Drive Object" ||
@@ -167,7 +168,7 @@ export class WorldUI {
                 self.selectViewMode.value = "Orbit Camera";
             }
 
-            let name = self.selectLook.value;
+            let name = event.target.value;
             _world.setActiveObject(name);
             let obj = _world.objects.find(ob => ob.name === name);
             let camparams = obj.lookFromLookAt();
