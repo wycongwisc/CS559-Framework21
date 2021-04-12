@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/*jshint esversion: 10 */
 // @ts-check
 
 /**
@@ -16,6 +16,27 @@ import * as InputHelpers from "../CS559/inputHelpers.js";
 import { GrWorld } from "./GrWorld.js";
 import * as T from "../CS559-Three/build/three.module.js";
 import { panel } from "./AutoUI.js";
+
+// allow for adding a "remote" button for grading
+function remoteButton(button, url, world, where) {
+    // attempt to do "lazy loading"
+    // inspired by on https://blog.avenuecode.com/lazy-loading-es2015-modules-in-the-browser
+    // refer to...
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+    let but = InputHelpers.makeButton(button,where);
+    but.onclick = function() {
+        /* jshint ignore:start */
+        import(url)
+            .then(function(mod) {
+                mod.logme(world,T);
+            })
+        .catch(err => {
+                alert("Grading Script not Available - students don't need to worry about this.");
+                console.log(`error loading grading module ${err}`); 
+            });
+        /* jshint ignore:end */
+    };
+}
 
 export class WorldUI {
     /**
@@ -35,7 +56,7 @@ export class WorldUI {
      * @param {number} [width=300]
      * @param {InputHelpers.WhereSpec} [where] - where to place the panel in the DOM (at the end of the page by default)
      */
-    constructor(world, width = 300, where = undefined) {
+    constructor(world, width = 500, where = undefined, grading=true) {
         let self = this;
         this.world = world;
 
@@ -82,6 +103,13 @@ export class WorldUI {
                 _world.showWorld();
             }
         };
+
+        if (grading) {
+            InputHelpers.makeSpan("replace",this.selectionChkList).innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;";
+            remoteButton("Grader","https://graphics.cs.wisc.edu/test/grading.js",world,this.selectionChkList);
+        }
+        //
+        //
         this.selectViewMode = InputHelpers.makeSelect(
             ["Orbit Camera", "Fly Camera", "Follow Object", "Drive Object"],
             this.div
