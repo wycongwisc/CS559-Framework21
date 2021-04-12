@@ -125,6 +125,10 @@ export class GrObject {
     /** @type {Number} */
     this.id = 0;
 
+    /** a flag as to whether this object should be "highlighted" as special - use by the UI */
+    /**  @type {Boolean} */
+    this.highlighted = false;
+
     // set up the object list
     if (Array.isArray(objectOrObjects)) {
       // we were given a list - do a deep copy

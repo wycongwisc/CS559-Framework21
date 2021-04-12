@@ -145,13 +145,16 @@ export class WorldUI {
         };
 
         // create a selector for isolate
+        // because there are often too many objects, we
+        // allow for some to be "highlighted" and included on a 
+        // shorter list
         InputHelpers.makeBreak(this.div);
         InputHelpers.makeSpan("LookAt:", this.div);
         this.selectLook = InputHelpers.makeSelect(
-            world.objects.map(ob => ob.name),
+            world.objects.map(ob => ob.name).sort(),
             this.div
         );
-        this.selectLook.onchange = function () {
+        function onSelectLook() {
             // if we were driving, stop!
             if (
                 world.view_mode == "Drive Object" ||
@@ -173,6 +176,19 @@ export class WorldUI {
                 camparams[4],
                 camparams[5]
             );
-        };
+        }
+        this.selectLook.onchange = onSelectLook; 
+
+        // get a list of the names of highlighted objects
+        let highObjs = world.objects.filter(ob => ob.highlighted);
+        if (highObjs.length) {
+            InputHelpers.makeBreak(this.div);
+            InputHelpers.makeSpan("LookAt (highlighted objects):", this.div);
+            this.selectLookHigh = InputHelpers.makeSelect(
+                highObjs.map(ob => ob.name).sort(),
+                this.div
+            );
+            this.selectLookHigh.onchange = onSelectLook;
+        } 
     }
 }
