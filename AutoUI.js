@@ -26,6 +26,7 @@ let panelPanel;
 export function panel() {
     if (!panelPanel) {
         panelPanel = InputHelpers.makeFlexDiv();
+        panelPanel.id = "panel-panel";
     }
     return panelPanel;
 }

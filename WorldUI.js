@@ -46,6 +46,7 @@ export class WorldUI {
 
 
         this.div = InputHelpers.makeBoxDiv({ width: width }, where);
+        this.div.id = "world-ui-div";
         InputHelpers.makeHead("World Controls", this.div, { tight: true });
         let _world = this.world;
 
