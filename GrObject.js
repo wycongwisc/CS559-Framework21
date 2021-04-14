@@ -168,6 +168,8 @@ export class GrObject {
    * time of day is provided so you can make objects that change over the
    * course of the day - it is a number between 0-24 (midnight->midnight)
    * it does not necessarily change smoothly.
+   * Delta is intended to be in "milliseconds" - but it is scaled by the current
+   * "speed" (and will be zero if time is stopped).
    * @param {number} delta
    * @param {number} timeOfDay
    */
