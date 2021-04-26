@@ -24,6 +24,14 @@ import * as T from "../CS559-Three/build/three.module.js";
 import { OrbitControls } from "../CS559-Three/examples/jsm/controls/OrbitControls.js";
 import { FlyControls } from "../CS559-Three/examples/jsm/controls/FlyControls.js";
 
+alert("look at TODO in GrWorld");
+
+/** Things to do post 2021 
+ * Better handling of rideable (let use controls)
+ * Better documentation (make it so that GrObject parameters show up)
+ * Convert to always use BufferGeometry (since Geometry is deprecated)
+ * */
+
 /**
  * Document the parameters for making a world - all are optional
  * we'll guess at something if you don't give it to us
