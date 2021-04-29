@@ -30,6 +30,7 @@ alert("look at TODO in GrWorld");
  * Better handling of rideable (let use controls)
  * Better documentation (make it so that GrObject parameters show up)
  * Convert to always use BufferGeometry (since Geometry is deprecated)
+ * glTF loader
  * */
 
 /**
