@@ -23,6 +23,7 @@ import { SimpleGroundPlane } from "./GroundPlane.js";
 import * as T from "../CS559-Three/build/three.module.js";
 import { OrbitControls } from "../CS559-Three/examples/jsm/controls/OrbitControls.js";
 import { FlyControls } from "../CS559-Three/examples/jsm/controls/FlyControls.js";
+import Stats from './Stats.js'
 
 alert("look at TODO in GrWorld");
 
@@ -603,6 +604,16 @@ export class GrWorld {
         });
     }
 
+    viewStats() {
+        this.stats = Stats();
+        this.stats.setMode(0);
+
+        this.stats.dom.style.position = 'absolute';
+        this.stats.dom.style.left = '0';
+        this.stats.dom.style.top = '0';
+        document.body.appendChild( this.stats.dom );
+    }
+
     /**
      * draw the default camera to the default renderer
      */
@@ -674,9 +685,14 @@ export class GrWorld {
         // remember, this gets redefined (it doesn't follow scope rules)
         let self = this;
         function loop() {
+
+            if (self.stats) self.stats.begin()
+
             self.animate(callbacks);
 
             count += 1;
+
+            if (self.stats) self.stats.end()
 
             // self.draw();     // animate does the draw
             window.requestAnimationFrame(loop);
