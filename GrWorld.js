@@ -195,28 +195,6 @@ export class GrWorld {
             this.orbit_controls.keys = { UP: 87, BOTTOM: 83, LEFT: 65, RIGHT: 68 };
             this.orbit_controls.target = lookat;
 
-            // For some reason, this version of three is missing the saveState method.
-            // Hack in something here to at least save something.
-            let orbitSaveState = function () {
-                this.position0 = new T.Vector3(
-                    this.object.position.x,
-                    this.object.position.y,
-                    this.object.position.z
-                );
-                this.target0 = this.target;
-            };
-            let orbitReset = function () {
-                this.object.position.set(
-                    this.position0.x,
-                    this.position0.y,
-                    this.position0.z
-                );
-                this.target = this.target0;
-                this.update();
-            };
-            // @ts-ignore - we are adding the save state function
-            this.orbit_controls.saveState = orbitSaveState;
-            this.orbit_controls.reset = orbitReset;
             // We also want a pointer to active set of controls.
             this.active_controls = this.orbit_controls;
             this.fly_controls = new FlyControls(
