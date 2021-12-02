@@ -23,6 +23,8 @@ import { SimpleGroundPlane } from "./GroundPlane.js";
 import * as T from "../CS559-Three/build/three.module.js";
 import { OrbitControls } from "../CS559-Three/examples/jsm/controls/OrbitControls.js";
 import { FlyControls } from "../CS559-Three/examples/jsm/controls/FlyControls.js";
+
+import { VRHelper } from './VRHelper.js'
 import Stats from './Stats.js'
 
 alert("look at TODO in GrWorld");
@@ -355,6 +357,14 @@ export class GrWorld {
         this.runbutton = params.runbutton;
         /** @type {HTMLInputElement} */
         this.speedcontrol = params.speedcontrol;
+
+        // add VR capability
+        this.VRHelper = new VRHelper({
+            renderer: this.renderer,
+            scene: this.scene,
+            camera: this.camera,
+            flightSpeed: 10,
+        })
     } // end of constructor
 
     restoreActiveObject() {
@@ -669,6 +679,8 @@ export class GrWorld {
         else if ((this.view_mode == "Fly Camera") && this.fly_controls) {
             this.fly_controls.update(0.1);
         }
+        this.VRHelper.update()
+
         if (callbacks.predraw) callbacks.predraw(this);
         this.draw();
         if (callbacks.postdraw) callbacks.postdraw(this);
