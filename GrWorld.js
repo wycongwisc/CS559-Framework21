@@ -604,6 +604,9 @@ export class GrWorld {
         });
     }
 
+    /**
+     * adds performance stats to the DOM
+     */
     viewStats() {
         this.stats = Stats();
         this.stats.setMode(0);
