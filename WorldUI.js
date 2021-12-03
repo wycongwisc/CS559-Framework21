@@ -1,4 +1,4 @@
-/*jshint esversion: 10 */
+/*jshint esversion: 11 */
 // @ts-check
 
 /**
