@@ -710,7 +710,7 @@ export class GrWorld {
             if (self.stats) self.stats.end()
 
             // self.draw();     // animate does the draw
-            window.requestAnimationFrame(loop);
+            self.renderer.setAnimationLoop(loop)
         }
         loop();
     }
