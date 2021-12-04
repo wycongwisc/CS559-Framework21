@@ -60,7 +60,7 @@ export class VRHelper {
         // squeeze button is used to fly forwards
         this.controller.addEventListener('squeezestart', () => {
             // direction the camera is facing
-            let dir = this.renderer.xr.getCamera(this.camera).getWorldDirection(new T.Vector3(0,0,0));
+            const dir = this.renderer.xr.getCamera(this.camera).getWorldDirection(new T.Vector3(0,0,0));
             this.flightDir = dir.normalize();
         })     
 
@@ -71,7 +71,7 @@ export class VRHelper {
         // select button is used to fly backwards
         this.controller.addEventListener('selectstart', () => {
             // opposite of the direction the camera is facing
-            let dir = this.renderer.xr.getCamera(this.camera).getWorldDirection(new T.Vector3(0,0,0)).multiplyScalar(-1);
+            const dir = this.renderer.xr.getCamera(this.camera).getWorldDirection(new T.Vector3(0,0,0)).multiplyScalar(-1);
             this.flightDir = dir.normalize();
         })
 
