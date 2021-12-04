@@ -167,12 +167,12 @@ export class WorldUI {
                 self.selectViewMode.value = "Orbit Camera";
             }
 
-            let name = event.target.value;
+            const name = event.target.value;
             _world.setActiveObject(name);
-            let obj = _world.objects.find(ob => ob.name === name);
-            let camparams = obj.lookFromLookAt();
+            const obj = _world.objects.find(ob => ob.name === name);
+            const camparams = obj.lookFromLookAt();
             world.camera.position.set(camparams[0], camparams[1], camparams[2]);
-            let lookAt = new T.Vector3(camparams[3], camparams[4], camparams[5]);
+            const lookAt = new T.Vector3(camparams[3], camparams[4], camparams[5]);
             world.camera.lookAt(lookAt);
             world.orbit_controls.target = new T.Vector3(
                 camparams[3],
