@@ -357,14 +357,6 @@ export class GrWorld {
         this.runbutton = params.runbutton;
         /** @type {HTMLInputElement} */
         this.speedcontrol = params.speedcontrol;
-
-        // add VR capability
-        this.VRHelper = new VRHelper({
-            renderer: this.renderer,
-            scene: this.scene,
-            camera: this.camera,
-            flightSpeed: 10,
-        })
     } // end of constructor
 
     restoreActiveObject() {
@@ -628,6 +620,18 @@ export class GrWorld {
     }
 
     /**
+     * adds VR capability
+     */
+    enableVR() {
+        this.VRHelper = new VRHelper({
+            renderer: this.renderer,
+            scene: this.scene,
+            camera: this.camera,
+            flightSpeed: 10,
+        })
+    }
+
+    /**
      * draw the default camera to the default renderer
      */
     draw() {
@@ -679,7 +683,7 @@ export class GrWorld {
         else if ((this.view_mode == "Fly Camera") && this.fly_controls) {
             this.fly_controls.update(0.1);
         }
-        this.VRHelper.update()
+        this.VRHelper?.update()
 
         if (callbacks.predraw) callbacks.predraw(this);
         this.draw();
@@ -701,13 +705,13 @@ export class GrWorld {
         let self = this;
         function loop() {
 
-            if (self.stats) self.stats.begin()
+            self.stats?.begin()
 
             self.animate(callbacks);
 
             count += 1;
 
-            if (self.stats) self.stats.end()
+            self.stats?.end()
 
             // self.draw();     // animate does the draw
             self.renderer.setAnimationLoop(loop)
