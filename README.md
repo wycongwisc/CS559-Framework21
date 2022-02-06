@@ -28,6 +28,7 @@ put into every single demo you make, so you don't have to re-type it every time.
 The main pieces that the Framework provides:
 
 1. **A "World"** - `GrWorld` is the basic container of your world. It contains a THREE.js `Scene` and a `THREE.js` renderer. When you create the world, it takes care of setting up the Scene and Renderer (including putting the Canvas on the page). It creates some lights, cameras, and a groundplane. The `GrWorld` constructor takes a lot of parameters, so you can tweak things to your needs.
+     - `GrWorld` also contains a `viewStats()` method which displays performance metrics for the THREE.js `Scene` and an `enableVR()` method which allows the `Scene` to be explored in VR (an "Enter VR" button will appear once this method is called).
 
 2. **Objects** - `GrObject` is a wrapper around THREE `Object3D` (or to be more precise, it can contain a list of them). It helps add a bit more functionality for objects, including animation, control panels, things for viewing, ...
 
